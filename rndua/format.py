@@ -52,3 +52,8 @@ class Formatter:
         res+=' (KHTML, like Gecko) Chrome/'+version[0]+' Safari/'
         res+=version[1]
         return res
+
+    def format_android_browser_ua(self,dev_ua,webkit_version='534.30'):
+        res='Mozilla/5.0 ('+dev_ua+') AppleWebKit/'+webkit_version
+        res+=' (KHTML, like Gecko) Version/4.0 Safari/'+webkit_version
+        return res
