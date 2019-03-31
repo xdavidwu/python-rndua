@@ -151,3 +151,9 @@ Mozilla/5.0 (Macintosh; Intel Mac OS X <version in x.y>; rv:<firefox version>) G
 ## Chrome versions list (data/chrome.csv)
 
 Copy [Chrome versions](https://en.wikipedia.org/wiki/Google_Chrome_version_history) html, strip to contain only main `<table>`, import into google sheets, delete columns except major version and layout version, delete header and future versions rows, delete 'Webkit' and 'Blink', export as csv and manually fill or fix layout engine column.
+
+## Firefox versions list (data/firefox.list)
+
+```
+curl https://ftp.mozilla.org/pub/firefox/releases/ | grep '<a href' | cut -d '>' -f 3 | cut -d '/' -f 1 | grep '\.' | grep -v 'b\|-\|rc\|plugin\|^\.' | tr -d 'esr' | sort -n | uniq
+```
