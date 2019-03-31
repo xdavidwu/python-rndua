@@ -9,3 +9,6 @@ class Formatter:
 
     def os_x_version_to_chrome(self,version):
         return 'Macintosh; Intel Mac OS X '+version.replace('.','_')
+
+    def windows_nt_version_to_ua(self,version):
+        return 'Windows NT '+version
