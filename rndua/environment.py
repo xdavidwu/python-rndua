@@ -24,6 +24,8 @@ class EnvironmentGenerator:
         self.windows_nt_32=['3.1','3.5','3.51','4.0','5.0','5.1']
         self.windows_nt_64=['5.2','6.0','6.1','6.2','6.3','10.0']
 
+        self.linux_distro_sig=['Ubuntu; ','Fedora; ','']
+
     def get_os_x_versions(self,x86=False,x64=True):
         pool=[]
         if x86:
@@ -77,3 +79,7 @@ class EnvironmentGenerator:
                 idx_max=i
                 break;
         return pool[random.randint(idx_min,idx_max)]
+
+    def get_random_linux_distro_firefox_sig(self):
+        return self.linux_distro_sig[random.randint(0,
+            len(self.linux_distro_sig)-1)]
