@@ -46,3 +46,9 @@ class Formatter:
             res+=version
         res+=' Firefox/'+version
         return res
+
+    def format_chrome_ua(self,dev_ua,version):
+        res='Mozilla/5.0 ('+dev_ua+') AppleWebKit/'+version[1]
+        res+=' (KHTML, like Gecko) Chrome/'+version[0]+' Safari/'
+        res+=version[1]
+        return res
