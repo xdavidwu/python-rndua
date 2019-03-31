@@ -145,3 +145,9 @@ Mozilla/5.0 (Macintosh; Intel Mac OS X <os x version>) AppleWebKit/<webkit> (KHT
 ```
 Mozilla/5.0 (Macintosh; Intel Mac OS X <version in x.y>; rv:<firefox version>) Gecko/20100101 Firefox/<firefox version>
 ```
+
+# Data generation
+
+## Chrome versions list (data/chrome.csv)
+
+Copy [Chrome versions](https://en.wikipedia.org/wiki/Google_Chrome_version_history) html, strip to contain only main `<table>`, import into google sheets, delete columns except major version and layout version, delete header and future versions rows, delete 'Webkit' and 'Blink', export as csv and manually fill or fix layout engine column.
