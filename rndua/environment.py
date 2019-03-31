@@ -66,13 +66,6 @@ class EnvironmentGenerator:
                 break;
         return pool[random.randint(idx_min,idx_max)]
 
-    def os_x_version_to_firefox(self,version):
-        ver=version.split('.')
-        return ver[0]+'.'+ver[1]
-
-    def os_x_version_to_chrome(self,version):
-        return version.replace('.','_')
-
     def get_windows_nt_versions(self,x86=False):
         pool=[]
         if x86:
@@ -118,4 +111,3 @@ class EnvironmentGenerator:
                 break;
         res=self.android_versions[random.randint(idx_max,idx_min)].copy()
         return [res[0],res[1],res[2][random.randint(0,len(res[2])-1)]]
-
