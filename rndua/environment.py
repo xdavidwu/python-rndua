@@ -32,9 +32,21 @@ class EnvironmentGenerator:
             pool+=self.os_x_64
         return pool
 
-    def get_random_os_x_version(self,x86=False,x64=True):
+    def get_random_os_x_version(self,x86=False,x64=True,minimum='10.4.4',
+            maximum='10.14.4'):
         pool=self.get_os_x_versions(x86=x86,x64=x64)
-        return pool[random.randint(0,len(pool)-1)]
+        vers_len=len(pool)
+        idx_min=0
+        for i in range(vers_len):
+            if pool[i]==minimum:
+                idx_min=i
+                break;
+        idx_max=vers_len-1
+        for i in range(vers_len-1,-1,-1):
+            if pool[i]==maximum:
+                idx_max=i
+                break;
+        return pool[random.randint(idx_min,idx_max)]
 
     def os_x_version_to_firefox(self,version):
         ver=version.split('.')
@@ -50,7 +62,8 @@ class EnvironmentGenerator:
         pool+=self.windows_nt_64
         return pool
 
-    def get_random_windows_nt_version(self,x86=False,minimum='6.1',maximum='10.0'):
+    def get_random_windows_nt_version(self,x86=False,minimum='6.1',
+            maximum='10.0'):
         pool=self.get_windows_nt_versions(x86=x86)
         vers_len=len(pool)
         idx_min=0
