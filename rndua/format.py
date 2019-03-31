@@ -5,7 +5,7 @@ class Formatter:
 
     def os_x_version_to_firefox(self,version):
         ver=version.split('.')
-        return 'Macintosh; Intel Mac OS X %s.%s; '%(ver[0],ver[1])
+        return 'Macintosh; Intel Mac OS X %s.%s'%(ver[0],ver[1])
 
     def os_x_version_to_chrome(self,version):
         return 'Macintosh; Intel Mac OS X '+version.replace('.','_')
@@ -36,4 +36,13 @@ class Formatter:
             res+='Mobile'
             return res
         res+=env[2]+' Build/'+env[0]
+        return res
+
+    def format_firefox_ua(self,dev_ua,version,desktop=True):
+        res='Mozilla/5.0 ('+dev_ua+'; rv:'+version+') Gecko/'
+        if desktop:
+            res+='20100101'
+        else:
+            res+=version
+        res+=' Firefox/'+version
         return res
