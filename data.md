@@ -157,3 +157,11 @@ Copy [Chrome versions](https://en.wikipedia.org/wiki/Google_Chrome_version_histo
 ```
 curl https://ftp.mozilla.org/pub/firefox/releases/ | grep '<a href' | cut -d '>' -f 3 | cut -d '/' -f 1 | grep '\.' | grep -v 'b\|-\|rc\|plugin\|^\.' | tr -d 'esr' | sort -n | uniq
 ```
+
+## Google Android build id and devices list
+
+Copy [Build numbers and Google devices](https://source.android.com/setup/start/build-numbers) html, strip to contain only target `<table>`, import into google sheets, delete Version and Security patch level column, delete header rows, delete rows with no devices, delete 'android-', export as tsv and use sed as below.
+
+```
+sed 's\_r[0-9p\.]*\\;s\[[:space:]]([^)]*)\\g'
+```

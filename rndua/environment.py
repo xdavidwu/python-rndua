@@ -1,3 +1,4 @@
+import os
 import random
 
 class EnvironmentGenerator:
@@ -25,6 +26,21 @@ class EnvironmentGenerator:
         self.windows_nt_64=['5.2','6.0','6.1','6.2','6.3','10.0']
 
         self.linux_distro_sig=['Ubuntu; ','Fedora; ','']
+
+        self.android_versions=[]
+        with open(os.path.join(os.path.dirname(__file__),
+            'data/android.tsv')) as android_data:
+            for line in android_data:
+                tsv=line[:-1].split('\t')
+                output=[tsv[0],tsv[1]]
+                dev=[]
+                for i in tsv[2].split(','):
+                    if i.startswith(' '):
+                        dev.append(i[1:])
+                    else:
+                        dev.append(i)
+                output.append(dev)
+                self.android_versions.append(output)
 
     def get_os_x_versions(self,x86=False,x64=True):
         pool=[]
@@ -83,3 +99,23 @@ class EnvironmentGenerator:
     def get_random_linux_distro_firefox_sig(self):
         return self.linux_distro_sig[random.randint(0,
             len(self.linux_distro_sig)-1)]
+
+    def get_android_versions(self):
+        return self.android_versions
+
+    def get_random_android_environment(self,minimum='4.0.1',
+            maximum='9.0.0'):
+        vers_len=len(self.android_versions)
+        idx_max=0
+        for i in range(vers_len):
+            if self.android_versions[i][1]==maximum:
+                idx_max=i
+                break;
+        idx_min=vers_len-1
+        for i in range(vers_len-1,-1,-1):
+            if self.android_versions[i][1]==minimum:
+                idx_min=i
+                break;
+        res=self.android_versions[random.randint(idx_max,idx_min)].copy()
+        return [res[0],res[1],res[2][random.randint(0,len(res[2])-1)]]
+
