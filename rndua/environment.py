@@ -20,6 +20,10 @@ class EnvironmentGenerator:
                 '10.13.4','10.13.5','10.13.6','10.14.0','10.14.1',
                 '10.14.2','10.14.3','10.14.4']
 
+        # from https://en.wikipedia.org/wiki/Windows_NT
+        self.windows_nt_32=['3.1','3.5','3.51','4.0','5.0','5.1']
+        self.windows_nt_64=['5.2','6.0','6.1','6.2','6.3','10.0']
+
     def get_os_x_versions(self,x86=False,x64=True):
         pool=[]
         if x86:
@@ -38,3 +42,25 @@ class EnvironmentGenerator:
 
     def os_x_version_to_chrome(self,version):
         return version.replace('.','_')
+
+    def get_windows_nt_versions(self,x86=False):
+        pool=[]
+        if x86:
+            pool+=self.windows_nt_32
+        pool+=self.windows_nt_64
+        return pool
+
+    def get_random_windows_nt_version(self,x86=False,minimum='6.1',maximum='10.0'):
+        pool=self.get_windows_nt_versions(x86=x86)
+        vers_len=len(pool)
+        idx_min=0
+        for i in range(vers_len):
+            if pool[i]==minimum:
+                idx_min=i
+                break;
+        idx_max=vers_len-1
+        for i in range(vers_len-1,-1,-1):
+            if pool[i]==maximum:
+                idx_max=i
+                break;
+        return pool[random.randint(idx_min,idx_max)]
