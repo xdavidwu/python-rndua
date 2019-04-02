@@ -1,4 +1,6 @@
 # python-rndua
+[![PyPI version](https://badge.fury.io/py/rndua.svg)](https://badge.fury.io/py/rndua)
+
 A python module that generate random user agent based on rules
 ## Why?
 Most random user agent generator just randomly pick from a large list.
