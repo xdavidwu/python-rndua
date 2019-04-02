@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="rndua",
-    version="0.0.1",
+    version="0.0.2",
     author="xdavidwu",
     author_email="xdavidwuph@gmail.com",
     description="A python module that generate random user agent based on rules",
@@ -18,5 +18,6 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
+    package_data={'rndua': ['data/*']}
 )
 
